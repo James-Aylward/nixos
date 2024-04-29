@@ -1,0 +1,41 @@
+@import 'colors.css';
+
+
+/* Systray Theming */
+#XfcePanelWindow {
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+.background {
+    background-color: #1f1f1f;
+}
+.xfce4-panel .tasklist .toggle :checked {
+  border-radius: 10px;
+}
+
+.tasklist button:checked {
+  border-bottom: 3px solid white;
+}
+
+.flat,
+.toggle {
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 16px;
+  padding: 4px;
+}
+.flat:hover,
+.toggle:hover {
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 16px;
+  padding: 4px;
+}
+.flat:checked,
+.toggle:checked {
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 16px;
+  border-bottom: 3px solid white;
+  padding: 4px;
+}
+
+
