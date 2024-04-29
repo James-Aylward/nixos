@@ -12,6 +12,21 @@
     services.blueman.enable = true;
     services.printing.enable = true; # CUPS
     services.gnome.gnome-keyring.enable = true;
+    services.picom.enable = true;
+    services.picom.activeOpacity = 0.90;
+    services.picom.inactiveOpacity = 0.90;
+    services.picom.fade = true;
+    services.picom.shadow = true;
+    services.picom.vSync = true;
+    services.picom.backend = "glx";
+    services.picom.settings = {
+        use-damage = false;
+        blur = {
+            method = "gaussian";
+            size = 10;
+            deviation = 5.0;
+        };
+    };
 
     # Programs
     programs.zsh.enable = true;
