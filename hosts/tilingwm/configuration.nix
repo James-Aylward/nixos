@@ -19,6 +19,9 @@
     services.picom.shadow = true;
     services.picom.vSync = true;
     services.picom.backend = "glx";
+    services.picom.opacityRules = [
+        "100:class_g = 'firefox'"
+    ];
     services.picom.settings = {
         use-damage = false;
         blur = {

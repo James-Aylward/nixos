@@ -96,6 +96,11 @@ in
         enableCompletion = true;
         autosuggestion.enable = true;
         syntaxHighlighting.enable = true;
+        
+        shellAliases = {
+            lg = "lazygit";
+        };
+
         initExtra = ''
             neofetch
         '';
@@ -113,6 +118,8 @@ in
     };
 
     programs.home-manager.enable = true;
+
+    services.playerctld.enable = true;
 
     services.polybar = {
         enable = true;
