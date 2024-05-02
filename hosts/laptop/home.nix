@@ -7,6 +7,7 @@ let
         etoolbox
         microtype
         siunitx
+        xcolor
         tcolorbox;
     });
 in

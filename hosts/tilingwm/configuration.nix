@@ -21,6 +21,7 @@
     services.picom.backend = "glx";
     services.picom.opacityRules = [
         "100:class_g = 'firefox'"
+        "100:class_g = 'sioyek'"
     ];
     services.picom.settings = {
         use-damage = false;

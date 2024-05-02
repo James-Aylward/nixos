@@ -78,6 +78,7 @@ in
         defaultEditor = true;
         extraPackages = with pkgs; [
             clang-tools
+            texlab
             lua-language-server
             rust-analyzer
         ];
@@ -118,6 +119,8 @@ in
     };
 
     programs.home-manager.enable = true;
+
+    programs.ssh.enable = true;
 
     services.playerctld.enable = true;
 
