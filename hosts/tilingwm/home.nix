@@ -103,6 +103,7 @@ in
         
         shellAliases = {
             lg = "lazygit";
+            trash = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
         };
 
         initExtra = ''
