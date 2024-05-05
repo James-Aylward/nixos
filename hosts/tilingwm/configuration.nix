@@ -7,7 +7,15 @@
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+networking.firewall = { 
+    enable = true;
+    allowedTCPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect
+    ];  
+    allowedUDPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect
+    ];  
+  };  
     # Services
     services.blueman.enable = true;
     services.printing.enable = true; # CUPS
@@ -22,6 +30,7 @@
     services.picom.opacityRules = [
         "100:class_g = 'firefox'"
         "100:class_g = 'sioyek'"
+        "100:class_g = 'qutebrowser'"
     ];
     services.picom.settings = {
         use-damage = false;

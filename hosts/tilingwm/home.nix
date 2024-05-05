@@ -20,6 +20,8 @@ in
     nixpkgs.config.allowUnfreePredicate = _: true;
     home.packages = with pkgs; [
         htop
+        socat
+        qutebrowser
         tex
         firefox
         obsidian
@@ -92,6 +94,7 @@ in
         userEmail = "james.michael.aylward@gmail.com";
     };
 
+    services.kdeconnect.enable = true;
     programs.zsh = {
         enable = true;
         enableCompletion = true;
