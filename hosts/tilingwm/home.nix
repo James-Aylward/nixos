@@ -19,38 +19,40 @@ in
     nixpkgs.config.allowUnfree = true;
     nixpkgs.config.allowUnfreePredicate = _: true;
     home.packages = with pkgs; [
-        htop
-        socat
-        qutebrowser
-        tex
-        firefox
-        obsidian
-        nextcloud-client
-        xournalpp
-        brightnessctl
         zsh
         lazygit
         zoxide
         ncspot
         kitty
-        mathematica
-        pavucontrol
-        ripgrep
-        mailspring
-        tree
-        tree-sitter
-        unzip
-        cargo
+        htop
+
+        qutebrowser
+        xournalpp
+        firefox
+        obsidian
+        tex
+        nextcloud-client
         libreoffice
         sioyek
-        networkmanagerapplet
+        mathematica
+
+        pavucontrol
+        mailspring
         flameshot
         rofi
+        brightnessctl
+        tree
+        playerctl
+        unzip
+        networkmanagerapplet
         rubber
         neofetch
-        conda
+
         rustc
+        cargo
+
         clang_18
+        conda
     ];
 
 
@@ -79,9 +81,15 @@ in
     	enable = true;
         defaultEditor = true;
         extraPackages = with pkgs; [
+            tree-sitter
+
             clang-tools
             texlab
             lua-language-server
+
+            nodePackages.svelte-language-server
+            nodePackages.typescript-language-server
+            ripgrep
             rust-analyzer
         ];
     };
