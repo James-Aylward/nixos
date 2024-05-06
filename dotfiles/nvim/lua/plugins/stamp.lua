@@ -1,0 +1,3 @@
+return {
+    "LandonSchropp/vim-stamp"
+}
