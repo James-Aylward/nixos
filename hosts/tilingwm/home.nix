@@ -94,6 +94,8 @@ in
         ];
     };
 
+    programs.direnv.enable = true;
+
     programs.gh.enable = true;
 
     programs.git = {
