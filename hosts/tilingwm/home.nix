@@ -4,6 +4,7 @@ let
         inherit (pkgs.texlive) scheme-basic
         pgf
         environ
+        parskip
         pgfplots
         etoolbox
         float
