@@ -4,7 +4,9 @@ let
         inherit (pkgs.texlive) scheme-basic
         pgf
         environ
+        pgfplots
         etoolbox
+        float
         microtype
         siunitx
         tcolorbox;
@@ -60,15 +62,12 @@ in
         ".config/nvim" = {
             source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/nvim";
         };
-
         ".config/i3" = {
             source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/i3";
         };
-
         ".config/polybar" = {
             source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/polybar";
         };
-
         ".config/kitty" = {
             source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/kitty";
         };
@@ -82,11 +81,9 @@ in
         defaultEditor = true;
         extraPackages = with pkgs; [
             tree-sitter
-
             clang-tools
             texlab
             lua-language-server
-
             nodePackages.svelte-language-server
             nodePackages.typescript-language-server
             ripgrep
@@ -105,6 +102,7 @@ in
     };
 
     services.kdeconnect.enable = true;
+
     programs.zsh = {
         enable = true;
         enableCompletion = true;
@@ -148,6 +146,7 @@ in
             polybar &
         '';
     };
+
     systemd.user.targets.graphical-session-i3 = {
       Unit = {
         Description = "i3 X session";
