@@ -36,7 +36,7 @@
         use-damage = false;
         blur = {
             method = "gaussian";
-            size = 10;
+            size = 40;
             deviation = 5.0;
         };
     };
@@ -97,12 +97,6 @@
             "jamesa" = import ./home.nix;
         };
     };
-
-
-    # List packages installed in system profile. To search, run:
-    #environment.systemPackages = with pkgs; [
-    #    gnome.gnome-keyring
-    #];
 
     system.stateVersion = "23.11";
 
