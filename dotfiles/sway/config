@@ -176,8 +176,11 @@ bindsym $mod+r mode "resize"
 #gaps inner 15px
 gaps inner 25px
 
+bar {
+    swaybar_command waybar
+}
+
 # Autostart
-exec --no-startup-id systemctl --user start graphical-session-i3.target
 exec --no-startup-id nextcloud
 exec --no-startup-id flameshot
 exec --no-startup-id blueman-applet

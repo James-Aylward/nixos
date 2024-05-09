@@ -60,15 +60,9 @@ in
         ".config/nvim" = {
             source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/nvim";
         };
-
         ".config/i3" = {
-            source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/i3";
+            source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/sway";
         };
-
-        ".config/polybar" = {
-            source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/polybar";
-        };
-
         ".config/kitty" = {
             source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/kitty";
         };
@@ -137,32 +131,6 @@ in
     programs.ssh.enable = true;
 
     services.playerctld.enable = true;
-
-    services.polybar = {
-        enable = true;
-        package = pkgs.polybar.override {
-            pulseSupport = true;
-            i3Support = true;
-        };
-        script = ''
-            polybar &
-        '';
-    };
-    systemd.user.targets.graphical-session-i3 = {
-      Unit = {
-        Description = "i3 X session";
-        BindsTo = [ "graphical-session.target" ];
-        Requisite = [ "graphical-session.target" ];
-      };
-    };
-    systemd.user.services.polybar = {
-      Unit.PartOf = [ "graphical-session-i3.target" ];
-      Install.WantedBy = [ "graphical-session-i3.target" ];
-    };
-
-    services.dunst = {
-        enable = true;
-    };
 
     home.sessionVariables = {
         EDITOR = "nvim";

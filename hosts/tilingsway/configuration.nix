@@ -1,50 +1,42 @@
 { config, pkgs, inputs, ... }:
-
+let
+  swayConfig = pkgs.writeText "greetd-sway-config" ''
+    # `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.
+    exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; swaymsg exit"
+    bindsym Mod4+shift+e exec swaynag \
+      -t warning \
+      -m 'What do you want to do?' \
+      -b 'Poweroff' 'systemctl poweroff' \
+      -b 'Reboot' 'systemctl reboot'
+  '';
+in
 {
     imports = [
         ./hardware-configuration.nix
-        inputs.home-manager.nixosModules.default
+            inputs.home-manager.nixosModules.default
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     networking.firewall = { 
-    enable = true;
-    allowedTCPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-    allowedUDPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-  };  
+        enable = true;
+        allowedTCPPortRanges = [ 
+        { from = 1714; to = 1764; } # KDE Connect
+        ];  
+        allowedUDPPortRanges = [ 
+        { from = 1714; to = 1764; } # KDE Connect
+        ];  
+    };  
+
     # Services
     services.blueman.enable = true;
     services.printing.enable = true; # CUPS
     services.gnome.gnome-keyring.enable = true;
-    services.picom.enable = true;
-    services.picom.activeOpacity = 0.90;
-    services.picom.inactiveOpacity = 0.90;
-    services.picom.fade = true;
-    services.picom.shadow = true;
-    services.picom.vSync = true;
-    services.picom.backend = "glx";
-    services.picom.opacityRules = [
-        "100:class_g = 'firefox'"
-        "100:class_g = 'sioyek'"
-        "100:class_g = 'qutebrowser'"
-    ];
-    services.picom.settings = {
-        use-damage = false;
-        blur = {
-            method = "gaussian";
-            size = 10;
-            deviation = 5.0;
-        };
-    };
+    security.polkit.enable = true;
 
     # Programs
     programs.zsh.enable = true;
 
-    # Locals
+# Locals
     time.timeZone = "Australia/Brisbane";
     i18n.defaultLocale = "en_AU.UTF-8";
     i18n.extraLocaleSettings = {
@@ -59,25 +51,27 @@
         LC_TIME = "en_AU.UTF-8";
     };
 
-
-
     services.xserver = {
-
         enable = true;
-
-        windowManager.i3.enable = true;
-        displayManager.lightdm = {
-            enable = true;
-            background = "/etc/nixos/backgrounds/background.png";
-            greeters.gtk.theme.name = "Adwaita-dark";
-        };
-
-        xkb = {
-            layout = "au";
-            variant = "";
-        };
-
+        #desktopManager.gnome.enable = true;
+        displayManager.gdm.wayland = false;
     };
+    services.greetd = {
+        enable = true;
+        settings = rec {
+            initial_session = {
+                command = "${pkgs.sway}/bin/sway --config ${swayConfig}";
+                user = "jamesa";
+            };
+            default_session = initial_session;
+        };
+    };
+
+    programs.sway = {
+        enable = true;
+        wrapperFeatures.gtk = true;
+    };
+    programs.waybar.enable = true;
 
     fonts.packages = with pkgs; [
         (nerdfonts.override { fonts = [ "DejaVuSansMono" ]; })
@@ -97,12 +91,6 @@
             "jamesa" = import ./home.nix;
         };
     };
-
-
-    # List packages installed in system profile. To search, run:
-    #environment.systemPackages = with pkgs; [
-    #    gnome.gnome-keyring
-    #];
 
     system.stateVersion = "23.11";
 
