@@ -29,6 +29,7 @@
     services.picom.backend = "glx";
     services.picom.opacityRules = [
         "100:class_g = 'firefox'"
+        "100:class_g = 'Minecraft* 1.20.4'"
         "100:class_g = 'sioyek'"
         "100:class_g = 'qutebrowser'"
     ];
@@ -38,6 +39,18 @@
             method = "gaussian";
             size = 40;
             deviation = 5.0;
+        };
+    };
+
+    services.auto-cpufreq.enable = true;
+    services.auto-cpufreq.settings = {
+        battery = {
+            governor = "powersave";
+            turbo = "never";
+        };
+        charger = {
+            governor = "performance";
+            turbo = "auto";
         };
     };
 

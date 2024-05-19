@@ -3,10 +3,14 @@ let
     tex = (pkgs.texlive.combine {
         inherit (pkgs.texlive) scheme-basic
         pgf
+        ec
+        cm-super
         environ
         parskip
         pgfplots
         etoolbox
+        pdfpages
+        pdflscape
         float
         microtype
         siunitx
@@ -28,6 +32,8 @@ in
         ncspot
         kitty
         htop
+        speedtest-cli
+        ncdu
 
         qutebrowser
         xournalpp
@@ -38,6 +44,7 @@ in
         libreoffice
         sioyek
         mathematica
+        kicad-small
 
         pavucontrol
         mailspring
@@ -113,6 +120,8 @@ in
         shellAliases = {
             lg = "lazygit";
             trash = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
+            n = "nvim .";
+            rb = "sudo nixos-rebuild switch --flake /etc/nixos/#tilingwm";
         };
 
         initExtra = ''

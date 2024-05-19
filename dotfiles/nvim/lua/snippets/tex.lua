@@ -26,7 +26,31 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
+
 return {
+    -- Figure
+    s(
+        {
+            trig="fig",
+            descr="Expands into figure",
+        },
+        fmta(
+            [[
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[scale=<>]{<>}
+                    \caption{<>}
+                    \label{fig:<>}
+                \end{figure}
+            ]],
+            {
+                i(1, "1"),
+                i(2),
+                i(3),
+                i(4),
+            }
+        )
+    ),
     -- Table
     s(
         {
