@@ -48,6 +48,10 @@
             governor = "powersave";
             turbo = "never";
         };
+        #battery = {
+        #    governor = "performance";
+        #    turbo = "never";
+        #};
         charger = {
             governor = "performance";
             turbo = "auto";

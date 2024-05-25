@@ -45,6 +45,8 @@ bindsym $mod+b exec qutebrowser
 bindsym $mod+o exec obsidian
 bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+p exec kitty ncspot
+bindsym $mod+q exec sioyek
+bindsym $mod+x exec xournalpp
 
 # kill focused window
 bindsym $mod+Shift+q kill
