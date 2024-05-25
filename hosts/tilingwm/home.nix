@@ -4,6 +4,7 @@ let
         inherit (pkgs.texlive) scheme-basic
         pgf
         ec
+        gensymb
         cm-super
         environ
         parskip
@@ -31,6 +32,7 @@ in
         zoxide
         ncspot
         kitty
+        qemu
         htop
         speedtest-cli
         ncdu
@@ -54,6 +56,7 @@ in
         tree
         playerctl
         unzip
+        fzf
         networkmanagerapplet
         rubber
         neofetch
@@ -64,6 +67,7 @@ in
         clang_18
         conda
     ];
+
 
 
     home.file = {
