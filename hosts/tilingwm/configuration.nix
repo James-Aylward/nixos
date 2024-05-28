@@ -32,6 +32,7 @@
         "100:class_g = 'Minecraft* 1.20.4'"
         "100:class_g = 'sioyek'"
         "100:class_g = 'qutebrowser'"
+        "100:class_g = 'Com.github.xournalpp.xournalpp'"
     ];
     services.picom.settings = {
         use-damage = false;
