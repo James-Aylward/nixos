@@ -16,6 +16,7 @@
       { from = 1714; to = 1764; } # KDE Connect
     ];  
   };  
+
     # Services
     services.blueman.enable = true;
     services.printing.enable = true; # CUPS
@@ -42,6 +43,9 @@
             deviation = 5.0;
         };
     };
+
+    services.dbus.implementation = "broker";
+    services.xserver.updateDbusEnvironment = true;
 
     services.auto-cpufreq.enable = true;
     services.auto-cpufreq.settings = {
