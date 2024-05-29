@@ -50,7 +50,8 @@ in
         kicad-small
 
         pavucontrol
-        mailspring
+        thunderbird
+        xdotool
         flameshot
         rofi
         brightnessctl
