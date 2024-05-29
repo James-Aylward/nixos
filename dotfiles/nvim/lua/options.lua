@@ -35,3 +35,10 @@ vim.opt.foldlevelstart = 99
 -- netrw
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
+
+-- Autocommands
+-- Latex
+vim.api.nvim_create_autocmd( {"BufEnter", "BufWinEnter"}, {
+    pattern = {"*.tex"},
+    command = [[ set wrap linebreak breakindent spell ]]
+})
