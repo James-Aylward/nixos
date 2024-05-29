@@ -36,6 +36,7 @@ in
         htop
         speedtest-cli
         ncdu
+        nodejs-slim
 
         qutebrowser
         xournalpp
