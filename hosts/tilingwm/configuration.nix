@@ -22,8 +22,10 @@
     services.printing.enable = true; # CUPS
     services.gnome.gnome-keyring.enable = true;
     services.picom.enable = true;
-    services.picom.activeOpacity = 0.90;
-    services.picom.inactiveOpacity = 0.90;
+    #services.picom.activeOpacity = 0.90;
+    #services.picom.inactiveOpacity = 0.90;
+    services.picom.activeOpacity = 1;
+    services.picom.inactiveOpacity = 1;
     services.picom.fade = true;
     services.picom.shadow = true;
     services.picom.vSync = true;
