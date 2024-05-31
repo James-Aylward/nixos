@@ -30,6 +30,7 @@ bindsym $mod+Shift+b exec rfkill toggle bluetooth
 bindsym $mod+Control+s exec systemctl poweroff
 bindsym $mod+Control+r exec systemctl reboot
 bindsym $mod+Control+l exec dm-tool lock
+bindsym $mod+Control+p exec --no-startup-id ~/.config/i3/penpollonce.sh
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
