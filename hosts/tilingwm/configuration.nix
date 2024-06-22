@@ -21,30 +21,30 @@
     services.blueman.enable = true;
     services.printing.enable = true; # CUPS
     services.gnome.gnome-keyring.enable = true;
-    services.picom.enable = true;
-    #services.picom.activeOpacity = 0.90;
-    #services.picom.inactiveOpacity = 0.90;
-    services.picom.activeOpacity = 1;
-    services.picom.inactiveOpacity = 1;
-    services.picom.fade = true;
-    services.picom.shadow = true;
-    services.picom.vSync = true;
-    services.picom.backend = "glx";
-    services.picom.opacityRules = [
-        "100:class_g = 'firefox'"
-        "100:class_g = 'Minecraft* 1.20.4'"
-        "100:class_g = 'sioyek'"
-        "100:class_g = 'qutebrowser'"
-        "100:class_g = 'Com.github.xournalpp.xournalpp'"
-    ];
-    services.picom.settings = {
-        use-damage = false;
-        blur = {
-            method = "gaussian";
-            size = 40;
-            deviation = 5.0;
-        };
-    };
+    #services.picom.enable = true;
+    ##services.picom.activeOpacity = 0.90;
+    ##services.picom.inactiveOpacity = 0.90;
+    #services.picom.activeOpacity = 1;
+    #services.picom.inactiveOpacity = 1;
+    #services.picom.fade = true;
+    #services.picom.shadow = true;
+    #services.picom.vSync = true;
+    #services.picom.backend = "glx";
+    #services.picom.opacityRules = [
+    #    "100:class_g = 'firefox'"
+    #    "100:class_g = 'Minecraft* 1.20.4'"
+    #    "100:class_g = 'sioyek'"
+    #    "100:class_g = 'qutebrowser'"
+    #    "100:class_g = 'Com.github.xournalpp.xournalpp'"
+    #];
+    #services.picom.settings = {
+    #    use-damage = false;
+    #    blur = {
+    #        method = "gaussian";
+    #        size = 40;
+    #        deviation = 5.0;
+    #    };
+    #};
 
     services.dbus.implementation = "broker";
     services.xserver.updateDbusEnvironment = true;
@@ -66,6 +66,8 @@
     };
 
     # Programs
+    nixpkgs.config.allowUnfree = true;
+    programs.steam.enable = true;
     programs.zsh.enable = true;
 
     # Locals

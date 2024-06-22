@@ -32,6 +32,7 @@ in
         zoxide
         ncspot
         kitty
+        killall
         qemu
         htop
         speedtest-cli
@@ -39,6 +40,7 @@ in
         nodejs-slim
 
         qutebrowser
+        xfce.thunar
         xournalpp
         firefox
         obsidian
@@ -89,6 +91,7 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/rofi";
         };
     };
+
     
     programs.neovim = {
     	enable = true;
