@@ -37,9 +37,10 @@ in
         htop
         speedtest-cli
         ncdu
-        nodejs-slim
 
-        qutebrowser
+        nodePackages_latest.nodejs
+        pnpm
+
         xfce.thunar
         xournalpp
         firefox

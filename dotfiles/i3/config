@@ -41,7 +41,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec kitty
-bindsym $mod+b exec qutebrowser
+bindsym $mod+b exec firefox
 bindsym $mod+o exec obsidian
 bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+p exec kitty ncspot

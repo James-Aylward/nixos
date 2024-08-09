@@ -36,6 +36,7 @@
 # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
         networking.useDHCP = lib.mkDefault true;
         networking.hostName = "nixos"; # Define your hostname.
+        #networking.wireless.enable = true;
         networking.networkmanager.enable = true;
 
 # Enable sound with pipewire.

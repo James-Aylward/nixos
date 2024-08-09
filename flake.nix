@@ -14,20 +14,6 @@
 
         nixosConfigurations = {
 
-            tilingsway = nixpkgs.lib.nixosSystem {
-                specialArgs = {inherit inputs;};
-                modules = [
-                    ./hosts/tilingsway/configuration.nix
-                ];
-            };
-
-            laptop = nixpkgs.lib.nixosSystem {
-                specialArgs = {inherit inputs;};
-                modules = [
-                    ./hosts/laptop/configuration.nix
-                ];
-            };
-
             tilingwm = nixpkgs.lib.nixosSystem {
                 specialArgs = {inherit inputs;};
                 modules = [
