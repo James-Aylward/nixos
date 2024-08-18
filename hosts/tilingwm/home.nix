@@ -7,9 +7,13 @@ let
         gensymb
         cm-super
         environ
+        txfonts
         parskip
         pgfplots
         etoolbox
+        stackengine
+        advdate
+        titlesec
         pdfpages
         pdflscape
         float
@@ -37,6 +41,7 @@ in
         htop
         speedtest-cli
         ncdu
+        darktable
 
         nodePackages_latest.nodejs
         pnpm
