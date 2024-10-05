@@ -6,12 +6,14 @@
 
 	home.stateVersion = "24.05";
 
+    fonts.fontconfig.enable = true;
 	home.packages = with pkgs; [
 		dmenu-rs
         feh
         nitch
 
 		tree
+        (nerdfonts.override {fonts = [ "JetBrainsMono" ]; })
 	];
 
 
