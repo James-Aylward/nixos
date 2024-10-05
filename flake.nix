@@ -29,6 +29,15 @@
           homeManagerConfig
         ];
       };
+      laptop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./common-configuration.nix
+          ./hosts/laptop/configuration.nix
+          home-manager.nixosModules.home-manager
+          homeManagerConfig
+        ];
+      };
     };
   };
 }
