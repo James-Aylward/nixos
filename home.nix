@@ -1,5 +1,27 @@
 { config, pkgs, inputs, ... }:
-
+let
+    tex = (pkgs.texlive.combine {
+        inherit (pkgs.texlive) scheme-basic
+        pgf
+        ec
+        gensymb
+        cm-super
+        environ
+        txfonts
+        parskip
+        pgfplots
+        etoolbox
+        stackengine
+        advdate
+        titlesec
+        pdfpages
+        pdflscape
+        float
+        microtype
+        siunitx
+        tcolorbox;
+    });
+in
 {
 	home.username = "jamesa";
 	home.homeDirectory = "/home/jamesa";
@@ -11,11 +33,14 @@
 		dmenu-rs
         feh
         nitch
-
+        ncdu
+        darktable
 		tree
+        tex
         (nerdfonts.override {fonts = [ "JetBrainsMono" ]; })
 	];
 
+    services.network-manager-applet.enable = true;
 
     services.picom = {
         enable = true;
@@ -31,6 +56,18 @@
                 contrastUiColor = "#282828";
             };
         };
+    };
+
+	home.file.".config/btop".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/btop;
+	home.file.".config/btop".recursive = true;
+    #programs.btop = {
+    #    enable = true;
+    #};
+
+    programs.lazygit.enable = true;
+
+    programs.sioyek = {
+        enable = true;
     };
 
     programs.firefox = {
@@ -65,6 +102,7 @@
             rocmPackages.llvm.clang
             rocmPackages.llvm.clang-tools-extra
 			ripgrep
+            rubber
 		];
 	};
 

@@ -87,6 +87,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "--fn", dmenufont
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *screenshotcmd[]  = { "flameshot", "gui", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
+static const char *pdfcmd[]  = { "sioyek", "--new-window", NULL };
 
 #include "selfrestart.c"
 
@@ -96,6 +97,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = pdfcmd } },
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstackvis,  {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstackvis,  {.i = -1 } },

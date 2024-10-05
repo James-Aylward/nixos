@@ -47,7 +47,7 @@
   services.xserver = {
     xkb.layout = "us";
     xkb.variant = "";
-    #enable = true;
+    enable = true;
     windowManager.dwm.enable = true;
     windowManager.dwm.package = pkgs.dwm.overrideAttrs {
     	src = ./dotfiles/dwm;
