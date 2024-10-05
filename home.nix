@@ -37,6 +37,7 @@ in
         darktable
 		tree
         tex
+        libreoffice-fresh
         (nerdfonts.override {fonts = [ "JetBrainsMono" ]; })
 	];
 
@@ -52,10 +53,17 @@ in
         enable = true;
         settings = {
             General = {
+                disableTrayIcon = true;
+                showStartupLaunchMessage = false;
                 uiColor = "#d79921";
                 contrastUiColor = "#282828";
             };
         };
+    };
+
+    services.nextcloud-client = {
+        enable = true;
+        startInBackground = true;
     };
 
 	home.file.".config/btop/themes".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/btop/themes;
@@ -103,6 +111,7 @@ in
 			tree-sitter
             rocmPackages.llvm.clang
             rocmPackages.llvm.clang-tools-extra
+            nodejs-slim
 			ripgrep
             rubber
 		];
