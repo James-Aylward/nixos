@@ -37,11 +37,12 @@ in
         darktable
 		tree
         tex
+        networkmanager_dmenu
         libreoffice-fresh
         (nerdfonts.override {fonts = [ "JetBrainsMono" ]; })
 	];
 
-    services.network-manager-applet.enable = true;
+    services.gnome-keyring.enable = true;
 
     services.picom = {
         enable = true;

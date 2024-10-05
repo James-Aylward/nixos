@@ -9,20 +9,24 @@
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, ... }@inputs:
+  let
+    homeManagerConfig = {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.extraSpecialArgs = { inherit inputs; };
+        home-manager.users.jamesa = import ./home.nix;
+    };
+  in
+  {
     nixosConfigurations = {
-      nixosvm = nixpkgs.lib.nixosSystem {
+      vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./common-configuration.nix
           ./hosts/vm/configuration.nix
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.jamesa = import ./home.nix;
-          }
+          homeManagerConfig
         ];
       };
     };
