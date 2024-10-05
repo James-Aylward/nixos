@@ -41,7 +41,6 @@
 
 # Enable sound with pipewire.
         #sound.enable = true;
-        hardware.pulseaudio.enable = true;
 # networking.interfaces.enp3s0u2u4.useDHCP = lib.mkDefault true;
 # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 

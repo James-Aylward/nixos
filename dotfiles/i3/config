@@ -148,6 +148,7 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
@@ -193,10 +194,11 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 # Autostart
 exec --no-startup-id systemctl --user start graphical-session-i3.target
 exec --no-startup-id nextcloud
-#exec --no-startup-id dbus-launch
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id rfkill block bluetooth
+exec --no-startup-id ~/.config/i3/copyq_launcher.sh
+exec --no-startup-id xinput disable 9
 assign [class="thunderbird"] 10
 
 exec --no-startup-id thunderbird

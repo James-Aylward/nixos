@@ -35,6 +35,12 @@ in
         lazygit
         zoxide
         ncspot
+
+        copyq
+
+        gphoto2
+        libgphoto2
+
         kitty
         killall
         qemu
@@ -54,7 +60,7 @@ in
         nextcloud-client
         libreoffice
         sioyek
-        mathematica
+        #mathematica
         kicad-small
 
         pavucontrol
@@ -105,6 +111,7 @@ in
         extraPackages = with pkgs; [
             tree-sitter
             clang-tools
+            pyright
             texlab
             lua-language-server
             nodePackages.svelte-language-server
@@ -124,7 +131,6 @@ in
         userEmail = "james.michael.aylward@gmail.com";
     };
 
-    services.kdeconnect.enable = true;
 
     programs.zsh = {
         enable = true;
@@ -137,6 +143,7 @@ in
             trash = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
             n = "nvim .";
             rb = "sudo nixos-rebuild switch --flake /etc/nixos/#tilingwm";
+            border = "bash /etc/nixos/dotfiles/border";
         };
 
         initExtra = ''

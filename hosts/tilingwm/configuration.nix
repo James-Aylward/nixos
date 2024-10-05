@@ -16,18 +16,24 @@
       { from = 1714; to = 1764; } # KDE Connect
     ];  
   };  
+    services.pipewire = { 
+        enable = true;
+        pulse.enable = true;
+    };
 
     # Services
     services.blueman.enable = true;
     services.printing.enable = true; # CUPS
+    services.printing.drivers = [ pkgs.epson-escpr ];
     services.gnome.gnome-keyring.enable = true;
-    #services.picom.enable = true;
+
+    services.picom.enable = true;
     ##services.picom.activeOpacity = 0.90;
     ##services.picom.inactiveOpacity = 0.90;
     #services.picom.activeOpacity = 1;
     #services.picom.inactiveOpacity = 1;
-    #services.picom.fade = true;
-    #services.picom.shadow = true;
+    services.picom.fade = true;
+    services.picom.shadow = true;
     #services.picom.vSync = true;
     #services.picom.backend = "glx";
     #services.picom.opacityRules = [
@@ -114,7 +120,7 @@
     users.users.jamesa = {
         isNormalUser = true;
         description = "James Aylward";
-        extraGroups = [ "video" "networkmanager" "wheel" ];
+        extraGroups = [ "video" "networkmanager" "wheel" "plugdev" ];
     };
 
     home-manager = {

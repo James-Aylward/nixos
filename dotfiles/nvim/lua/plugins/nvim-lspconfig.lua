@@ -8,5 +8,6 @@ return  {
         lsp.texlab.setup{}
         lsp.svelte.setup{}
         lsp.tsserver.setup{}
+        lsp.pyright.setup{}
     end
 }
