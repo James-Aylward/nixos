@@ -39,25 +39,41 @@ in
         tex
         networkmanager_dmenu
         libreoffice-fresh
+        thunderbird
         (nerdfonts.override {fonts = [ "JetBrainsMono" ]; })
 	];
-
-    services.gnome-keyring.enable = true;
 
     services.picom = {
         enable = true;
         fadeDelta = 5;
         fade = true;
+        activeOpacity = 0.95;
+        inactiveOpacity = 0.95;
+        opacityRules = [
+            "100:class_g = 'firefox'"
+            "100:class_g = 'sioyek'"
+            "100:class_g = 'darktable'"
+            "100:class_g = 'feh'"
+        ];
     };
-    
+
     services.flameshot = {
         enable = true;
         settings = {
             General = {
-                disableTrayIcon = true;
                 showStartupLaunchMessage = false;
                 uiColor = "#d79921";
                 contrastUiColor = "#282828";
+            };
+        };
+    };
+
+
+    services.dunst = {
+        enable = true;
+        settings = {
+            global = {
+                frame_color = "#d79921";
             };
         };
     };
@@ -79,6 +95,38 @@ in
 
     programs.sioyek = {
         enable = true;
+    };
+
+    programs.ncspot = {
+        enable = true;
+        settings = {
+            use_nerdfont = true;
+            notify = true;
+            theme = {
+                    background = "default";
+                    primary = "#EBDBB2";
+                    secondary = "#D5C4A1";
+                    title = "#D65D0E";
+                    playing = "#83a597";
+                    playing_selected = "#458588";
+                    playing_bg = "#1D2021";
+                    highlight = "#D79921";
+                    highlight_bg = "#1D2021";
+                    error = "#FBF1C7";
+                    error_bg = "#CC241D";
+                    statusbar = "#282828";
+                    statusbar_progress = "#689D6A";
+                    statusbar_bg = "#98971A";
+                    cmdline = "#1D2021";
+                    cmdline_bg = "#FE8019";
+                    search_match = "#fabd2f";
+            };
+        };
+    };
+
+    programs.yazi = {
+        enable = true;
+        enableZshIntegration = true;
     };
 
     programs.firefox = {

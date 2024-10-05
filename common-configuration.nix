@@ -24,6 +24,7 @@
 
 # Configure keymap in X11
     services.xserver = {
+        updateDbusEnvironment = true;
         xkb.layout = "us";
         xkb.variant = "";
         enable = true;
@@ -32,6 +33,9 @@
             src = ./dotfiles/dwm;
         };
     };
+
+    services.gnome.gnome-keyring.enable = true;
+
 
     users.users.jamesa = {
         isNormalUser = true;

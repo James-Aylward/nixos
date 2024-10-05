@@ -88,6 +88,9 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static const char *screenshotcmd[]  = { "flameshot", "gui", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
 static const char *pdfcmd[]  = { "sioyek", "--new-window", NULL };
+static const char *wallpapercmd[]  = { "feh", "--bg-fill", "/etc/nixos/backgrounds/nix.png", NULL };
+
+static const char **startup_programs[] = { wallpapercmd };
 
 #include "selfrestart.c"
 
