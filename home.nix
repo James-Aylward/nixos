@@ -58,11 +58,13 @@ in
         };
     };
 
-	home.file.".config/btop".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/btop;
-	home.file.".config/btop".recursive = true;
-    #programs.btop = {
-    #    enable = true;
-    #};
+	home.file.".config/btop/themes".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/btop/themes;
+    programs.btop = {
+        enable = true;
+        settings = {
+            color_theme = "gruvbox_dark";
+        };
+    };
 
     programs.lazygit.enable = true;
 
