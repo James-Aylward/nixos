@@ -37,10 +37,15 @@ in
         darktable
 		tree
         tex
+        brightnessctl
+        pamixer
         networkmanager_dmenu
         libreoffice-fresh
         thunderbird
         (nerdfonts.override {fonts = [ "JetBrainsMono" ]; })
+        (pkgs.dwmblocks.overrideAttrs {
+            src = /etc/nixos/dotfiles/dwmblocks;
+        })
 	];
 
     services.picom = {
@@ -56,6 +61,8 @@ in
             "100:class_g = 'feh'"
         ];
     };
+
+    services.playerctld.enable = true;
 
     services.flameshot = {
         enable = true;
@@ -89,6 +96,12 @@ in
         settings = {
             color_theme = "gruvbox_dark";
         };
+    };
+
+    programs.direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+        enableZshIntegration = true;
     };
 
     programs.lazygit.enable = true;
@@ -147,6 +160,9 @@ in
 		enable = true;
 		settings = {
 			import = [ ./dotfiles/alacritty/gruvbox_dark.toml ];
+            font = {
+                size = 8;
+            };
 		};
 	};
 
@@ -170,9 +186,11 @@ in
 		enable = true;
 		autosuggestion.enable = true;
 		shellAliases = {
-			rb = "sudo nixos-rebuild switch --flake /etc/nixos";
+			rb = "sudo nixos-rebuild switch --flake /etc/nixos#";
+            lg = "lazygit";
 		};
         initExtra = ''
+            xinput disable 10
             nitch
         '';
         oh-my-zsh = {

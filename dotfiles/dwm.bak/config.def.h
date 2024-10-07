@@ -8,16 +8,20 @@ static const unsigned int gappiv    = 15;       /* vert inner gap between window
 static const unsigned int gappoh    = 15;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 15;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrains Mono Nerd Font:size=10" };
-static const char dmenufont[]       = "JetBrains Mono Nerd Font:size=10";
+static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
+static const unsigned int systrayspacing = 2;   /* systray spacing */
+static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+static const int showsystray        = 1;     /* 0 means no systray */
+static const int showbar            = 1;     /* 0 means no bar */
+static const int topbar             = 1;     /* 0 means bottom bar */
+static const char *fonts[]          = { "monospace:size=10" };
+static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#282828";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-//static const char col_cyan[]        = "#d79921";
-static const char col_cyan[]        = "#fc7e18";
+static const char col_cyan[]        = "#d79921";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -87,13 +91,10 @@ static const char *pdfcmd[]  = { "sioyek", "--new-window", NULL };
 static const char *wallpapercmd[]  = { "feh", "--bg-fill", "/etc/nixos/backgrounds/nix.png", NULL };
 static const char *brightnessupcmd[]  = { "brightnessctl", "set", "10%+", NULL };
 static const char *brightnessdowncmd[]  = { "brightnessctl", "set", "10%-", NULL };
-static const char *dwmblockscmd[]  = { "dwmblocks", NULL };
 
-static const char *xinputfixcmd[]  = { "[ \"$(hostname)\" = \"laptop\" ] && xinput disable 9", NULL };
+static const char **startup_programs[] = { wallpapercmd };
 
-
-static const char **startup_programs[] = { wallpapercmd, dwmblockscmd, xinputfixcmd };
-
+#include "selfrestart.c"
 #include <X11/XF86keysym.h>
 
 static const Key keys[] = {
@@ -106,10 +107,12 @@ static const Key keys[] = {
 	{ 0,                            XF86XK_AudioPlay,          spawn,          {.v = "playerctl play-pause" } },
 	{ 0,                            XF86XK_AudioNext,          spawn,          {.v = "playerctl next" } },
 	{ 0,                            XF86XK_AudioPrev,          spawn,          {.v = "playerctl prev" } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = pdfcmd } },
+	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstackvis,  {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstackvis,  {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,      focusstackhid,  {.i = +1 } },
@@ -125,18 +128,19 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-    //{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_f,      fullscreen,     {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	//{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
+	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_s,      show,           {0} },
+	{ MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
+	{ MODKEY|ShiftMask,             XK_p,      quit,           {0} },
+	//{ MODKEY,                       XK_s,      show,           {0} },
 	//{ MODKEY|ShiftMask,             XK_s,      showall,        {0} },
 	//{ MODKEY,                       XK_h,      hide,           {0} },
 	TAGKEYS(                        XK_1,                      0)
@@ -148,15 +152,14 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_p,      quit,           {0} },
 };
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 	{ ClkWinTitle,          0,              Button1,        togglewin,      {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
@@ -168,4 +171,3 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
