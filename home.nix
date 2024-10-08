@@ -42,6 +42,7 @@ in
         networkmanager_dmenu
         libreoffice-fresh
         thunderbird
+        networkmanagerapplet
         (nerdfonts.override {fonts = [ "JetBrainsMono" ]; })
         (pkgs.dwmblocks.overrideAttrs {
             src = /etc/nixos/dotfiles/dwmblocks;
@@ -176,7 +177,10 @@ in
 			tree-sitter
             rocmPackages.llvm.clang
             rocmPackages.llvm.clang-tools-extra
+            nil
             nodejs-slim
+            typescript-language-server
+            lua-language-server
 			ripgrep
             rubber
 		];

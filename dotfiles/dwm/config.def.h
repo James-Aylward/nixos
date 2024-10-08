@@ -94,10 +94,11 @@ static const char *brightnessupcmd[]  = { "brightnessctl", "set", "10%+", NULL }
 static const char *brightnessdowncmd[]  = { "brightnessctl", "set", "10%-", NULL };
 static const char *dwmblockscmd[]  = { "dwmblocks", NULL };
 
-static const char *xinputfixcmd[]  = { "[ \"$(hostname)\" = \"laptop\" ] && xinput disable 9", NULL };
+static const char *xinputfixcmd[]  = { "xinput", "disable", "9", NULL };
+static const char *nmappletcmd[]  = { "nm-applet", NULL };
 
 
-static const char **startup_programs[] = { wallpapercmd, dwmblockscmd, xinputfixcmd };
+static const char **startup_programs[] = { wallpapercmd, dwmblockscmd, xinputfixcmd, nmappletcmd };
 
 #include <X11/XF86keysym.h>
 
