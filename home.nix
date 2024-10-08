@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 let
-    tex = (pkgs.texlive.combine {
+tex = (pkgs.texlive.combine {
         inherit (pkgs.texlive) scheme-basic
         pgf
         ec
@@ -20,34 +20,36 @@ let
         microtype
         siunitx
         tcolorbox;
-    });
+        });
 in
 {
-	home.username = "jamesa";
-	home.homeDirectory = "/home/jamesa";
+    home.username = "jamesa";
+    home.homeDirectory = "/home/jamesa";
 
-	home.stateVersion = "24.05";
+    home.stateVersion = "24.05";
 
     fonts.fontconfig.enable = true;
-	home.packages = with pkgs; [
-		dmenu-rs
-        feh
-        nitch
-        ncdu
-        darktable
-		tree
-        tex
-        brightnessctl
-        pamixer
-        networkmanager_dmenu
-        libreoffice-fresh
-        thunderbird
-        networkmanagerapplet
-        (nerdfonts.override {fonts = [ "JetBrainsMono" ]; })
-        (pkgs.dwmblocks.overrideAttrs {
-            src = /etc/nixos/dotfiles/dwmblocks;
-        })
-	];
+    nixpkgs.config.allowUnfree = true;
+    home.packages = with pkgs; [
+        dmenu-rs
+            feh
+            nitch
+            ncdu
+            darktable
+            tree
+            tex
+            brightnessctl
+            pamixer
+            networkmanager_dmenu
+            mathematica
+            libreoffice-fresh
+            thunderbird
+            networkmanagerapplet
+            (nerdfonts.override {fonts = [ "JetBrainsMono" ]; })
+            (pkgs.dwmblocks.overrideAttrs {
+             src = /etc/nixos/dotfiles/dwmblocks;
+             })
+    ];
 
     services.picom = {
         enable = true;
@@ -57,9 +59,9 @@ in
         inactiveOpacity = 0.95;
         opacityRules = [
             "100:class_g = 'firefox'"
-            "100:class_g = 'sioyek'"
-            "100:class_g = 'darktable'"
-            "100:class_g = 'feh'"
+                "100:class_g = 'sioyek'"
+                "100:class_g = 'darktable'"
+                "100:class_g = 'feh'"
         ];
     };
 
@@ -91,7 +93,7 @@ in
         startInBackground = true;
     };
 
-	home.file.".config/btop/themes".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/btop/themes;
+    home.file.".config/btop/themes".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/btop/themes;
     programs.btop = {
         enable = true;
         settings = {
@@ -111,29 +113,37 @@ in
         enable = true;
     };
 
+    programs.autorandr = {
+        enable = true;
+        hooks.postswitch = [
+            ''feh --bg-fill /etc/nixos/backgrounds/nix.png''
+        ];
+    };
+    services.autorandr.enable = true;
+
     programs.ncspot = {
         enable = true;
         settings = {
             use_nerdfont = true;
             notify = true;
             theme = {
-                    background = "default";
-                    primary = "#EBDBB2";
-                    secondary = "#D5C4A1";
-                    title = "#D65D0E";
-                    playing = "#83a597";
-                    playing_selected = "#458588";
-                    playing_bg = "#1D2021";
-                    highlight = "#D79921";
-                    highlight_bg = "#1D2021";
-                    error = "#FBF1C7";
-                    error_bg = "#CC241D";
-                    statusbar = "#282828";
-                    statusbar_progress = "#689D6A";
-                    statusbar_bg = "#98971A";
-                    cmdline = "#1D2021";
-                    cmdline_bg = "#FE8019";
-                    search_match = "#fabd2f";
+                background = "default";
+                primary = "#EBDBB2";
+                secondary = "#D5C4A1";
+                title = "#D65D0E";
+                playing = "#83a597";
+                playing_selected = "#458588";
+                playing_bg = "#1D2021";
+                highlight = "#D79921";
+                highlight_bg = "#1D2021";
+                error = "#FBF1C7";
+                error_bg = "#CC241D";
+                statusbar = "#282828";
+                statusbar_progress = "#689D6A";
+                statusbar_bg = "#98971A";
+                cmdline = "#1D2021";
+                cmdline_bg = "#FE8019";
+                search_match = "#fabd2f";
             };
         };
     };
@@ -148,84 +158,84 @@ in
         profiles.jamesa = {
             extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
                 ublock-origin
-                gruvbox-dark-theme
-                to-deepl
-                vimium
-                libredirect
+                    gruvbox-dark-theme
+                    to-deepl
+                    vimium
+                    libredirect
             ];
         };
-        
+
     };
 
-	programs.alacritty = {
-		enable = true;
-		settings = {
-			import = [ ./dotfiles/alacritty/gruvbox_dark.toml ];
+    programs.alacritty = {
+        enable = true;
+        settings = {
+            import = [ ./dotfiles/alacritty/gruvbox_dark.toml ];
             font = {
                 size = 8;
             };
-		};
-	};
+        };
+    };
 
-	home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/nvim;
-	programs.neovim = {
-		enable = true;
-		viAlias = true;
-		vimAlias = true;
-		vimdiffAlias = true;
-		extraPackages = with pkgs; [
-			tree-sitter
-            rocmPackages.llvm.clang
-            rocmPackages.llvm.clang-tools-extra
-            nil
-            nodejs-slim
-            typescript-language-server
-            lua-language-server
-			ripgrep
-            rubber
-		];
-	};
+    home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./dotfiles/nvim;
+    programs.neovim = {
+        enable = true;
+        viAlias = true;
+        vimAlias = true;
+        vimdiffAlias = true;
+        extraPackages = with pkgs; [
+            tree-sitter
+                rocmPackages.llvm.clang
+                rocmPackages.llvm.clang-tools-extra
+                nil
+                nodejs-slim
+                typescript-language-server
+                lua-language-server
+                ripgrep
+                rubber
+        ];
+    };
 
-	programs.zsh = {
-		enable = true;
-		autosuggestion.enable = true;
-		shellAliases = {
-			rb = "sudo nixos-rebuild switch --flake /etc/nixos#";
+    programs.zsh = {
+        enable = true;
+        autosuggestion.enable = true;
+        shellAliases = {
+            rb = "sudo nixos-rebuild switch --flake /etc/nixos#";
             lg = "lazygit";
-		};
+        };
         initExtra = ''
             xinput disable 10
             nitch
-        '';
+            '';
         oh-my-zsh = {
             enable = true;
             plugins = [ "git" "sudo" ];
         };
-	};
-    
+    };
+
     programs.fzf = {
         enable = true;
         enableZshIntegration = true;
     };
 
-	programs.zoxide = {
-		enable = true;
-		enableZshIntegration = true;
-	};
+    programs.zoxide = {
+        enable = true;
+        enableZshIntegration = true;
+    };
 
-	programs.git = {
-		enable = true;
-		userEmail = "james.michael.aylward@gmail.com";
-		userName = "James Aylward";
-	};
+    programs.git = {
+        enable = true;
+        userEmail = "james.michael.aylward@gmail.com";
+        userName = "James Aylward";
+    };
 
     programs.gh = {
         enable = true;
     };
 
-	home.sessionVariables = {
-		EDITOR = "nvim";
-	};
+    home.sessionVariables = {
+        EDITOR = "nvim";
+    };
 
-	programs.home-manager.enable = true;
+    programs.home-manager.enable = true;
 }
