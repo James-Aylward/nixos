@@ -21,8 +21,23 @@ tex = (pkgs.texlive.combine {
         siunitx
         tcolorbox;
         });
+ncspot_latest = pkgs.ncspot.overrideAttrs (oldAttrs: rec {
+    version = "1.2.0";
+    src = pkgs.fetchFromGitHub {
+        owner = "hrkfdn";
+        repo = "ncspot";
+        rev = "v1.2.0";
+        hash = "sha256-FI/MZRxTyYWh+CWq3roO6d48xlPsyL58+euGmCZ8p4Y=";
+      };
+      cargoDeps = oldAttrs.cargoDeps.overrideAttrs (pkgs.lib.const {
+      name = "ncspot-vendor.tar.gz";
+      inherit src;
+      outputHash = "sha256-yHgj85VylhE2S/Fyu3wBdxdmNIvzT9D1dPCYXoVf6oc=";
+    });
+});
 in
 {
+
     home.username = "jamesa";
     home.homeDirectory = "/home/jamesa";
 
@@ -93,6 +108,7 @@ in
         settings = {
             global = {
                 frame_color = "#d79921";
+                background = "#282828";
             };
         };
     };
@@ -132,26 +148,29 @@ in
     };
     services.autorandr.enable = true;
 
+    programs.ncspot.package = ncspot_latest;
     programs.ncspot = {
         enable = true;
         settings = {
             use_nerdfont = true;
             notify = true;
+            gapless = true;
+            flip_status_indicators = true;
             theme = {
                 background = "default";
                 primary = "#EBDBB2";
                 secondary = "#D5C4A1";
-                title = "#D65D0E";
+                title = "#fc7e18"; #done
                 playing = "#83a597";
                 playing_selected = "#458588";
                 playing_bg = "#1D2021";
                 highlight = "#D79921";
                 highlight_bg = "#1D2021";
-                error = "#FBF1C7";
-                error_bg = "#CC241D";
-                statusbar = "#282828";
-                statusbar_progress = "#689D6A";
-                statusbar_bg = "#98971A";
+                error = "#eeeeee"; #done
+                error_bg = "#a50000"; #done
+                statusbar = "#eeeeee"; #done
+                statusbar_progress = "#fc7e18"; #done
+                statusbar_bg = "#fc7e18"; # done
                 cmdline = "#1D2021";
                 cmdline_bg = "#FE8019";
                 search_match = "#fabd2f";
