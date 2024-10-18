@@ -47,7 +47,7 @@ in
             networkmanagerapplet
             (nerdfonts.override {fonts = [ "JetBrainsMono" ]; })
             (pkgs.dwmblocks.overrideAttrs {
-             src = /etc/nixos/dotfiles/dwmblocks;
+             src = ./dotfiles/dwmblocks;
              })
             inputs.menucalc.packages.x86_64-linux.menucalc
     ];
