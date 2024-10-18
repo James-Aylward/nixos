@@ -97,6 +97,8 @@ static const char *volumedowncmd[] = { "pamixer", "-d", "5;", "pkill", "-RTMIN+1
 static const char *togglemutecmd[] = { "pamixer", "-t;", "pkill", "-RTMIN+10", "dwmblocks", NULL};
 static const char *dwmblockscmd[]  = { "dwmblocks", NULL };
 static const char *dmenucalccmd[] = {"=", "--dmenu=dmenu", "--", "-m", dmenumon, "--fn", dmenufont, "--nb", col_gray1, "--nf", col_gray3, "--sb", col_cyan, "--sf", col_gray4, NULL};
+static const char *dmenuswitchcmd[] = {"switch", NULL};
+static const char *yazi[] = {"alacritty", "-e", "yazi", NULL};
 
 //static const char *xinputfixcmd[]  = { "xinput", "disable", "9", NULL };
 static const char *nmappletcmd[]  = { "nm-applet", NULL };
@@ -122,6 +124,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
     { MODKEY,                       XK_equal,  spawn,          {.v = dmenucalccmd }},
+    { MODKEY,                       XK_c,      spawn,          {.v = dmenuswitchcmd }},
+    { MODKEY,                       XK_e,      spawn,          {.v = yazi }},
 	{ MODKEY,                       XK_j,      focusstackvis,  {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstackvis,  {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,      focusstackhid,  {.i = +1 } },
