@@ -92,13 +92,18 @@ static const char *pdfcmd[]  = { "sioyek", "--new-window", NULL };
 static const char *wallpapercmd[]  = { "feh", "--bg-fill", "/etc/nixos/backgrounds/nix.png", NULL };
 static const char *brightnessupcmd[]  = { "brightnessctl", "set", "10%+", NULL };
 static const char *brightnessdowncmd[]  = { "brightnessctl", "set", "10%-", NULL };
+static const char *volumeupcmd[] =   { "pamixer", "-i", "5;", "pkill", "-RTMIN+10", "dwmblocks", NULL};
+static const char *volumedowncmd[] = { "pamixer", "-d", "5;", "pkill", "-RTMIN+10", "dwmblocks", NULL};
+static const char *togglemutecmd[] = { "pamixer", "-t;", "pkill", "-RTMIN+10", "dwmblocks", NULL};
 static const char *dwmblockscmd[]  = { "dwmblocks", NULL };
+static const char *dmenucalccmd[] = {"=", "--dmenu=dmenu", "--", "-m", dmenumon, "--fn", dmenufont, "--nb", col_gray1, "--nf", col_gray3, "--sb", col_cyan, "--sf", col_gray4, NULL};
 
-static const char *xinputfixcmd[]  = { "xinput", "disable", "9", NULL };
+//static const char *xinputfixcmd[]  = { "xinput", "disable", "9", NULL };
 static const char *nmappletcmd[]  = { "nm-applet", NULL };
+static const char *dwmblocksfixcmd[] = { "pkill", "-RTMIN+10", "dwmblocks", NULL };
 
 
-static const char **startup_programs[] = { wallpapercmd, dwmblockscmd, xinputfixcmd, nmappletcmd };
+static const char **startup_programs[] = { wallpapercmd, dwmblockscmd, nmappletcmd, dwmblocksfixcmd };
 
 #include <X11/XF86keysym.h>
 
@@ -106,16 +111,17 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ 0,                            XF86XK_MonBrightnessUp,    spawn,          {.v = brightnessupcmd } },
 	{ 0,                            XF86XK_MonBrightnessDown,  spawn,          {.v = brightnessdowncmd } },
-	{ 0,                            XF86XK_AudioMute,          spawn,          {.v = "pamixer -t" } },
-	{ 0,                            XF86XK_AudioLowerVolume,   spawn,          {.v = "pamixer -d 5" } },
-	{ 0,                            XF86XK_AudioRaiseVolume,   spawn,          {.v = "pamixer -i 5" } },
-	{ 0,                            XF86XK_AudioPlay,          spawn,          {.v = "playerctl play-pause" } },
-	{ 0,                            XF86XK_AudioNext,          spawn,          {.v = "playerctl next" } },
-	{ 0,                            XF86XK_AudioPrev,          spawn,          {.v = "playerctl prev" } },
+	{ 0,                            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("pamixer -i 5 && pkill -RTMIN+10 dwmblocks") },
+	{ 0,                            XF86XK_AudioLowerVolume,   spawn,          SHCMD("pamixer -d 5 && pkill -RTMIN+10 dwmblocks") },
+	{ 0,                            XF86XK_AudioMute,          spawn,          SHCMD("pamixer -t   && pkill -RTMIN+10 dwmblocks") },
+	{ 0,                            XF86XK_AudioPlay,          spawn,          SHCMD("playerctl play-pause") },
+	{ 0,                            XF86XK_AudioNext,          spawn,          SHCMD("playerctl next") },
+	{ 0,                            XF86XK_AudioPrev,          spawn,          SHCMD("playerctl prev") },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
+    { MODKEY,                       XK_equal,  spawn,          {.v = dmenucalccmd }},
 	{ MODKEY,                       XK_j,      focusstackvis,  {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstackvis,  {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,      focusstackhid,  {.i = +1 } },

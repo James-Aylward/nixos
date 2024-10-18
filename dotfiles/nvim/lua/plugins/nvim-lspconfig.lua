@@ -8,6 +8,7 @@ return  {
         lsp.texlab.setup{}
         lsp.svelte.setup{}
         lsp.nil_ls.setup{}
-        lsp.ts_ls.setup{}
+        --lsp.ts_ls.setup{}
+        lsp.pyright.setup{}
     end
 }

@@ -41,13 +41,13 @@
       pulse.enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
+      wireplumber.enable = true;
     };
-
 
     users.users.jamesa = {
         isNormalUser = true;
         description = "James Aylward";
-        extraGroups = [ "video" "networkmanager" "wheel" ];
+        extraGroups = [ "audio" "video" "networkmanager" "wheel" ];
     };
 
     nixpkgs.config.allowUnfree = true;

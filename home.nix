@@ -31,7 +31,7 @@ in
     fonts.fontconfig.enable = true;
     nixpkgs.config.allowUnfree = true;
     home.packages = with pkgs; [
-        dmenu-rs
+            dmenu-rs
             feh
             nitch
             ncdu
@@ -49,6 +49,7 @@ in
             (pkgs.dwmblocks.overrideAttrs {
              src = /etc/nixos/dotfiles/dwmblocks;
              })
+            inputs.menucalc.packages.x86_64-linux.menucalc
     ];
 
     services.picom = {
@@ -58,10 +59,15 @@ in
         activeOpacity = 0.95;
         inactiveOpacity = 0.95;
         opacityRules = [
-            "100:class_g = 'firefox'"
+                "100:class_g = 'firefox'"
                 "100:class_g = 'sioyek'"
                 "100:class_g = 'darktable'"
+                "100:class_g = 'Darktable'"
                 "100:class_g = 'feh'"
+        ];
+
+        fadeExclude = [
+                "class_g = 'dmenu'"
         ];
     };
 
@@ -115,9 +121,11 @@ in
 
     programs.autorandr = {
         enable = true;
-        hooks.postswitch = [
-            ''feh --bg-fill /etc/nixos/backgrounds/nix.png''
-        ];
+        hooks.postswitch = {
+            "change-background" = ''
+                feh --bg-fill /etc/nixos/backgrounds/nix.png
+                '';
+        };
     };
     services.autorandr.enable = true;
 
@@ -187,11 +195,14 @@ in
             tree-sitter
                 rocmPackages.llvm.clang
                 rocmPackages.llvm.clang-tools-extra
+                pyright
                 nil
                 nodejs-slim
+                svelte-language-server
                 typescript-language-server
                 lua-language-server
                 ripgrep
+                rust-analyzer
                 rubber
         ];
     };
