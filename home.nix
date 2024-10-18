@@ -41,6 +41,7 @@ in
             brightnessctl
             pamixer
             networkmanager_dmenu
+            obsidian
             mathematica
             libreoffice-fresh
             thunderbird
@@ -64,6 +65,7 @@ in
                 "100:class_g = 'darktable'"
                 "100:class_g = 'Darktable'"
                 "100:class_g = 'feh'"
+                "100:class_g = 'obsidian'"
         ];
 
         fadeExclude = [
