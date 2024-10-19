@@ -65,6 +65,9 @@ in
             (pkgs.dwmblocks.overrideAttrs {
              src = ./dotfiles/dwmblocks;
              })
+            (pkgs.slock.overrideAttrs {
+             src = ./dotfiles/slock;
+             })
             (import ./programs/window-switcher.nix { inherit pkgs; })
             inputs.menucalc.packages.x86_64-linux.menucalc
     ];
