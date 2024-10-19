@@ -34,6 +34,13 @@
         };
     };
 
+    programs.slock = {
+        enable = true;
+        package = pkgs.slock.overrideAttrs {
+            src = ./dotfiles/slock;
+        };
+    };
+
     services.autorandr.enable = true;
 
     services.gnome.gnome-keyring.enable = true;
