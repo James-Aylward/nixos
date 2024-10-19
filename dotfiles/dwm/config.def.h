@@ -99,6 +99,7 @@ static const char *dwmblockscmd[]  = { "dwmblocks", NULL };
 static const char *dmenucalccmd[] = {"=", "--dmenu=dmenu", "--", "-m", dmenumon, "--fn", dmenufont, "--nb", col_gray1, "--nf", col_gray3, "--sb", col_cyan, "--sf", col_gray4, NULL};
 static const char *dmenuswitchcmd[] = {"switch", NULL};
 static const char *yazi[] = {"alacritty", "-e", "yazi", NULL};
+static const char *slock[] = {"slock", NULL};
 
 //static const char *xinputfixcmd[]  = { "xinput", "disable", "9", NULL };
 static const char *nmappletcmd[]  = { "nm-applet", NULL };
@@ -119,6 +120,7 @@ static const Key keys[] = {
 	{ 0,                            XF86XK_AudioPlay,          spawn,          SHCMD("playerctl play-pause") },
 	{ 0,                            XF86XK_AudioNext,          spawn,          SHCMD("playerctl next") },
 	{ 0,                            XF86XK_AudioPrev,          spawn,          SHCMD("playerctl prev") },
+	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = slock } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd } },

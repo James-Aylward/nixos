@@ -36,9 +36,10 @@
 
     programs.slock = {
         enable = true;
-        package = pkgs.slock.overrideAttrs {
+        package = pkgs.slock.overrideAttrs (oldAttrs: {
             src = ./dotfiles/slock;
-        };
+            buildInputs = oldAttrs.buildInputs ++ [ pkgs.cairo pkgs.imlib2 ];
+        });
     };
 
     services.autorandr.enable = true;
