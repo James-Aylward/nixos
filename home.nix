@@ -270,5 +270,6 @@ in
         EDITOR = "nvim";
     };
 
+    xsession.numlock.enable = true;
     programs.home-manager.enable = true;
 }
