@@ -32,6 +32,11 @@
         windowManager.dwm.package = pkgs.dwm.overrideAttrs {
             src = ./dotfiles/dwm;
         };
+        displayManager.lightdm = {
+            enable = true;
+            background = ./backgrounds/nix.png;
+            greeters.gtk.theme.package = pkgs.gruvbox-dark-gtk;
+        };
     };
 
     programs.slock = {
