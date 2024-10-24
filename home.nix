@@ -46,7 +46,6 @@ in
             pamixer
             networkmanager_dmenu
             obsidian
-	    xournalpp
             mathematica
             libreoffice-fresh
             thunderbird
