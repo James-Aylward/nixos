@@ -120,7 +120,7 @@ static const Key keys[] = {
 	{ 0,                            XF86XK_AudioPlay,          spawn,          SHCMD("playerctl play-pause") },
 	{ 0,                            XF86XK_AudioNext,          spawn,          SHCMD("playerctl next") },
 	{ 0,                            XF86XK_AudioPrev,          spawn,          SHCMD("playerctl prev") },
-	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = slock } },
+	{ MODKEY|ControlMask,           XK_l,      spawn,          {.v = slock } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd } },
