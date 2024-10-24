@@ -20,20 +20,6 @@ tex = (pkgs.texlive.combine {
         microtype
         siunitx
         tcolorbox;
-        });
-ncspot_latest = pkgs.ncspot.overrideAttrs (oldAttrs: rec {
-    version = "1.2.0";
-    src = pkgs.fetchFromGitHub {
-        owner = "hrkfdn";
-        repo = "ncspot";
-        rev = "v1.2.0";
-        hash = "sha256-FI/MZRxTyYWh+CWq3roO6d48xlPsyL58+euGmCZ8p4Y=";
-      };
-      cargoDeps = oldAttrs.cargoDeps.overrideAttrs (pkgs.lib.const {
-      name = "ncspot-vendor.tar.gz";
-      inherit src;
-      outputHash = "sha256-yHgj85VylhE2S/Fyu3wBdxdmNIvzT9D1dPCYXoVf6oc=";
-    });
 });
 in
 {
@@ -47,6 +33,9 @@ in
     nixpkgs.config.allowUnfree = true;
     home.packages = with pkgs; [
             dmenu-rs
+	    qmk
+	    vial
+	    nix-search-cli
             feh
             nitch
             ncdu
@@ -57,6 +46,7 @@ in
             pamixer
             networkmanager_dmenu
             obsidian
+	    xournalpp
             mathematica
             libreoffice-fresh
             thunderbird
@@ -148,7 +138,6 @@ in
     };
     services.autorandr.enable = true;
 
-    programs.ncspot.package = ncspot_latest;
     programs.ncspot = {
         enable = true;
         settings = {
