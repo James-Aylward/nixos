@@ -1,6 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, specialArgs, ... }:
 
+let
+  inputs = specialArgs.inputs;
+in
 {
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   # Enable networking
   networking.networkmanager.enable = true;
 

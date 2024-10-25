@@ -23,6 +23,7 @@
       nixosConfigurations = {
         vm = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
           modules = [
             ./common-configuration.nix
             ./hosts/vm/configuration.nix
@@ -32,6 +33,7 @@
         };
         laptop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
           modules = [
             ./common-configuration.nix
             ./hosts/laptop/configuration.nix
