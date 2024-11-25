@@ -47,7 +47,9 @@ in
     networkmanager_dmenu
     obsidian
     mathematica
+    moonlight-qt
     libreoffice-fresh
+    remmina
     thunderbird
     networkmanagerapplet
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -56,9 +58,6 @@ in
     })
     (import ./programs/window-switcher.nix { inherit pkgs; })
     inputs.menucalc.packages.x86_64-linux.menucalc
-    (pkgs.kodi.withPackages (kodiPkgs: with kodiPkgs; [
-      youtube
-    ]))
   ];
 
   services.picom = {
@@ -74,6 +73,7 @@ in
       "100:class_g = 'Darktable'"
       "100:class_g = 'feh'"
       "100:class_g = 'obsidian'"
+      "100:class_g = 'org.remmina.Remmina'"
     ];
 
     fadeExclude = [
@@ -191,7 +191,7 @@ in
   programs.alacritty = {
     enable = true;
     settings = {
-      import = [ ./dotfiles/alacritty/gruvbox_dark.toml ];
+      general.import = [ ./dotfiles/alacritty/gruvbox_dark.toml ];
       font = {
         size = 8;
       };
