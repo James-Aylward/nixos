@@ -33,7 +33,6 @@ in
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     dmenu-rs
-    qmk
     vial
     nix-search-cli
     feh
