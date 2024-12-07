@@ -26,6 +26,8 @@ in
     LC_TIME = "en_AU.UTF-8";
   };
 
+  services.blueman.enable = true;
+
   # Configure keymap in X11
   services.xserver = {
     updateDbusEnvironment = true;

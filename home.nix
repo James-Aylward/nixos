@@ -59,6 +59,8 @@ in
     inputs.menucalc.packages.x86_64-linux.menucalc
   ];
 
+  services.blueman-applet.enable = true;
+
   services.picom = {
     enable = true;
     fadeDelta = 5;
