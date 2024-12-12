@@ -51,7 +51,7 @@ in
     remmina
     thunderbird
     networkmanagerapplet
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerd-fonts.jetbrains-mono
     (pkgs.dwmblocks.overrideAttrs {
       src = ./dotfiles/dwmblocks;
     })
