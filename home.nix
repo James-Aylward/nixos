@@ -50,6 +50,7 @@ in
     libreoffice-fresh
     remmina
     thunderbird
+    pavucontrol
     networkmanagerapplet
     nerd-fonts.jetbrains-mono
     (pkgs.dwmblocks.overrideAttrs {

@@ -100,6 +100,7 @@ static const char *dmenucalccmd[] = {"=", "--dmenu=dmenu", "--", "-m", dmenumon,
 static const char *dmenuswitchcmd[] = {"switch", NULL};
 static const char *yazi[] = {"alacritty", "-e", "yazi", NULL};
 static const char *slock[] = {"slock", NULL};
+static const char *pavucontrolcmd[] = {"pavucontrol", NULL};
 
 //static const char *xinputfixcmd[]  = { "xinput", "disable", "9", NULL };
 static const char *nmappletcmd[]  = { "nm-applet", NULL };
@@ -127,6 +128,7 @@ static const Key keys[] = {
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd }},
     { MODKEY,                       XK_equal,  spawn,          {.v = dmenucalccmd }},
     { MODKEY,                       XK_c,      spawn,          {.v = dmenuswitchcmd }},
+    { MODKEY,                       XK_a,      spawn,          {.v = pavucontrolcmd }},
     { MODKEY,                       XK_e,      spawn,          {.v = yazi }},
 	{ MODKEY,                       XK_j,      focusstackvis,  {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstackvis,  {.i = -1 } },
