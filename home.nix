@@ -52,6 +52,7 @@ in
     thunderbird
     clamav
     pavucontrol
+    qimgv
     networkmanagerapplet
     nerd-fonts.jetbrains-mono
     (pkgs.dwmblocks.overrideAttrs {
