@@ -45,6 +45,10 @@ in
     };
   };
 
+  services.clamav = {
+    daemon.enable = true;
+  };
+
   programs.slock = {
     enable = true;
     package = pkgs.slock.overrideAttrs (oldAttrs: {

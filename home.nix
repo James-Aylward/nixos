@@ -50,6 +50,7 @@ in
     libreoffice-fresh
     remmina
     thunderbird
+    clamav
     pavucontrol
     networkmanagerapplet
     nerd-fonts.jetbrains-mono
