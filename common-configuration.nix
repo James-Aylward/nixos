@@ -32,7 +32,6 @@ in
   services.xserver = {
     updateDbusEnvironment = true;
     xkb.layout = "us";
-    xkb.variant = "colemak_dh";
     enable = true;
     windowManager.dwm.enable = true;
     windowManager.dwm.package = pkgs.dwm.overrideAttrs {

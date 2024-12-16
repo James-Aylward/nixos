@@ -13,12 +13,27 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems."fuse.sshfs" = true;
 
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/60969ea2-3f59-42fd-bf77-736feff0b59a";
       fsType = "ext4";
     };
+
+  fileSystems."/mnt/darktable_server" = 
+  {
+    device = "root@192.168.1.6:/";
+    fsType = "fuse.sshfs";
+    options = [
+        "nodev"
+        "noatime"
+        "allow_other"
+        "identityfile=/home/jamesa/.ssh/id_ed25519"
+	"_netdev"
+	"x-systemd.automount"
+    ];
+  };
 
   fileSystems."/boot" =
     {
