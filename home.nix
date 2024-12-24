@@ -229,8 +229,8 @@ in
     enable = true;
     autosuggestion.enable = true;
     shellAliases = {
-      rb = "sudo nixos-rebuild switch --flake /etc/nixos#";
-      lg = "lazygit";
+      rb = "sudo nixos-rebuild switch --flake /etc/nixos/.\\?submodules=1#laptop";
+      lg  = "lazygit";
     };
     initExtra = ''
       xinput disable 10
