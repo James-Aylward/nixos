@@ -21,20 +21,6 @@
       fsType = "ext4";
     };
 
-  fileSystems."/mnt/darktable_server" = 
-  {
-    device = "root@192.168.1.6:/";
-    fsType = "fuse.sshfs";
-    options = [
-        "nodev"
-        "noatime"
-        "allow_other"
-        "identityfile=/home/jamesa/.ssh/id_ed25519"
-	"_netdev"
-	"x-systemd.automount"
-    ];
-  };
-
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/F223-F314";
