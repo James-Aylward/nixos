@@ -34,6 +34,7 @@ in
   home.packages = with pkgs; [
     dmenu-rs
     vial
+    timewarrior
     nix-search-cli
     feh
     nitch
@@ -78,6 +79,7 @@ in
       "100:class_g = 'feh'"
       "100:class_g = 'obsidian'"
       "100:class_g = 'org.remmina.Remmina'"
+      "100:class_g = 'code'"
     ];
 
     fadeExclude = [
@@ -186,6 +188,7 @@ in
         gruvbox-dark-theme
         to-deepl
         vimium
+        vue-js-devtools
         libredirect
       ];
     };
@@ -218,6 +221,7 @@ in
       nodejs-slim
       svelte-language-server
       typescript-language-server
+      vue-language-server
       lua-language-server
       ripgrep
       rust-analyzer
