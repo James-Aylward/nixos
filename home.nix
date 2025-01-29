@@ -46,7 +46,7 @@ in
     pamixer
     networkmanager_dmenu
     obsidian
-    mathematica
+    #mathematica
     moonlight-qt
     libreoffice-fresh
     remmina

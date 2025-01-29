@@ -21,6 +21,16 @@
     in
     {
       nixosConfigurations = {
+        framework = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./common-configuration.nix
+            ./hosts/framework/configuration.nix
+            home-manager.nixosModules.home-manager
+            homeManagerConfig
+          ];
+        };
         vm = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
