@@ -18,7 +18,7 @@
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
+  fileSystems."/boot/efi" =
     { device = "/dev/disk/by-uuid/0714-8070";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
@@ -27,6 +27,26 @@
   swapDevices =
     [ { device = "/dev/disk/by-uuid/d6618fac-45fa-4954-a40b-d7b9d4ed18cb"; }
     ];
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    battery = {
+      governor = "powersave";
+      turbo = "never";
+    };
+    #battery = {
+    #    governor = "performance";
+    #    turbo = "never";
+    #};
+    charger = {
+      governor = "performance";
+      turbo = "auto";
+    };
+  };
+  
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
