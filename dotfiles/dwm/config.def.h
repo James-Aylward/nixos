@@ -104,10 +104,11 @@ static const char *pavucontrolcmd[] = {"pavucontrol", NULL};
 
 //static const char *xinputfixcmd[]  = { "xinput", "disable", "9", NULL };
 static const char *nmappletcmd[]  = { "nm-applet", NULL };
+static const char *bluemanappletcmd[]  = { "blueman-applet", NULL };
 static const char *dwmblocksfixcmd[] = { "pkill", "-RTMIN+10", "dwmblocks", NULL };
 
 
-static const char **startup_programs[] = { wallpapercmd, dwmblockscmd, nmappletcmd, dwmblocksfixcmd };
+static const char **startup_programs[] = { wallpapercmd, dwmblockscmd, nmappletcmd, dwmblocksfixcmd, bluemanappletcmd };
 
 #include <X11/XF86keysym.h>
 
