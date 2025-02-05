@@ -10,9 +10,15 @@
       ./hardware-configuration.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+	enable = true;
+	efiSupport = true;
+	device = "nodev";
+  };
+  boot.loader.efi = {
+  	canTouchEfiVariables = true;
+	efiSysMountPoint = "/boot/efi";
+  };
 
   networking.hostName = "framework"; # Define your hostname.
   # Pick only one of the below networking options.
