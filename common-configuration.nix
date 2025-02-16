@@ -51,6 +51,9 @@ in
     daemon.enable = true;
   };
 
+  programs.steam.enable = true;
+  programs.nix-ld.enable = true;
+
   programs.slock = {
     enable = true;
     package = pkgs.slock.overrideAttrs (oldAttrs: {
