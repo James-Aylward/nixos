@@ -32,8 +32,10 @@ in
   fonts.fontconfig.enable = true;
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
+    gzdoom
     dmenu-rs
     vial
+    vlc
     timewarrior
     nix-search-cli
     feh
@@ -80,6 +82,7 @@ in
       "100:class_g = 'obsidian'"
       "100:class_g = 'org.remmina.Remmina'"
       "100:class_g = 'code'"
+      "100:class_g = 'Celeste.bin.c86_64'"
     ];
 
     fadeExclude = [
