@@ -13,7 +13,7 @@
   outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       homeManagerConfig = {
-        home-manager.useGlobalPkgs = true;
+        #home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs; };
         home-manager.users.jamesa = import ./home.nix;

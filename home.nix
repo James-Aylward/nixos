@@ -49,7 +49,7 @@ in
     networkmanager_dmenu
     obsidian
     #mathematica
-    moonlight-qt
+    xterm
     libreoffice-fresh
     remmina
     thunderbird
