@@ -238,6 +238,7 @@ in
     shellAliases = {
       rb = "sudo nixos-rebuild switch --flake /etc/nixos/.\\?submodules=1#laptop";
       lg  = "lazygit";
+      moss = "ssh s4743699@moss.labs.eait.uq.edu.au";
     };
     initExtra = ''
       xinput disable 10
