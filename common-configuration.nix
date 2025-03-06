@@ -26,6 +26,13 @@ in
     LC_TIME = "en_AU.UTF-8";
   };
 
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "jamesa" ];
+  #virtualisation.virtualbox.
+  virtualisation.libvirtd.enable = true;
+     virtualisation.virtualbox.host.enableKvm = true;
+   virtualisation.virtualbox.host.addNetworkInterface = false;
+
   services.blueman.enable = true;
 
   # Configure keymap in X11
