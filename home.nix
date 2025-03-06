@@ -52,6 +52,8 @@ in
     #mathematica
     xterm
     libreoffice-fresh
+    hunspell
+    hunspellDicts.en-au-large
     remmina
     thunderbird
     clamav
