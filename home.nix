@@ -32,7 +32,8 @@ in
   fonts.fontconfig.enable = true;
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
-    gzdoom
+    usbutils
+    unzip
     dmenu-rs
     vial
     vlc
@@ -238,7 +239,7 @@ in
     shellAliases = {
       rb = "sudo nixos-rebuild switch --flake /etc/nixos/.\\?submodules=1#laptop";
       lg  = "lazygit";
-      moss = "ssh s4743699@moss.labs.eait.uq.edu.au";
+      moss = "ssh -A s4743699@moss.labs.eait.uq.edu.au";
     };
     initExtra = ''
       xinput disable 10
