@@ -34,6 +34,7 @@ in
   home.packages = with pkgs; [
     usbutils
     unzip
+    playerctl
     dmenu-rs
     vial
     vlc
