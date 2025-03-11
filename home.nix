@@ -233,6 +233,7 @@ in
       ripgrep
       rust-analyzer
       rubber
+      java-language-server
     ];
   };
 
