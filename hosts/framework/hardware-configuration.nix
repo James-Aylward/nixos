@@ -27,21 +27,31 @@
   swapDevices =
     [ { device = "/dev/disk/by-uuid/d6618fac-45fa-4954-a40b-d7b9d4ed18cb"; }
     ];
-  services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = {
-    battery = {
-      governor = "powersave";
-      turbo = "never";
-    };
-    #battery = {
-    #    governor = "performance";
-    #    turbo = "never";
-    #};
-    charger = {
-      governor = "performance";
-      turbo = "auto";
-    };
-  };
+
+  #nixpkgs.pkgs.auto-cpufreq.package = pkgs.auto-cpufreq.overrideAttrs (old: rec {
+  #  propagatedBuildInputs = with pkgs.python3Packages; [
+  #    click
+  #    distro
+  #    (psutil.overridePythonAttrs (old: { version = "5.9.5"; }))
+  #    pygobject3
+  #    poetry-dynamic-versioning
+  #    setuptools
+  #    pyinotify
+  #    getent
+  #  ];
+  #});
+
+  #services.auto-cpufreq.enable = true;
+  #services.auto-cpufreq.settings = {
+  #  battery = {
+  #    governor = "powersave";
+  #    turbo = "never";
+  #  };
+  #  charger = {
+  #    governor = "performance";
+  #    turbo = "auto";
+  #  };
+  #};
   
   hardware.bluetooth = {
     enable = true;
