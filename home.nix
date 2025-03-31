@@ -50,7 +50,9 @@ in
     pamixer
     networkmanager_dmenu
     obsidian
-    #mathematica
+    (pkgs.mathematica.override {
+        version = "14.1.0";
+    })
     xterm
     libreoffice-fresh
     hunspell
@@ -190,7 +192,7 @@ in
   programs.firefox = {
     enable = true;
     profiles.jamesa = {
-      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+      extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
         ublock-origin
         gruvbox-dark-theme
         to-deepl
@@ -220,6 +222,7 @@ in
     vimdiffAlias = true;
     extraPackages = with pkgs; [
       tree-sitter
+      texlab
       rocmPackages.llvm.clang
       rocmPackages.llvm.clang-tools-extra
       pyright
