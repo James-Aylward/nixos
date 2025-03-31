@@ -40,8 +40,8 @@ in
     dpi = 144;
     updateDbusEnvironment = true;
     xkb.layout = "us,us";
-    xkbVariant = "colemak_dh,";
-    xkbOptions = "grp:alt_space_toggle";
+    xkb.variant = "colemak_dh,";
+    xkb.options = "grp:alt_space_toggle";
     enable = true;
     windowManager.dwm.enable = true;
     windowManager.dwm.package = pkgs.dwm.overrideAttrs {
