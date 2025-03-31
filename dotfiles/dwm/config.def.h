@@ -122,6 +122,7 @@ static const Key keys[] = {
 	{ 0,                            XF86XK_AudioPlay,          spawn,          SHCMD("playerctl play-pause") },
 	{ 0,                            XF86XK_AudioNext,          spawn,          SHCMD("playerctl next") },
 	{ 0,                            XF86XK_AudioPrev,          spawn,          SHCMD("playerctl prev") },
+	{ MODKEY,                       XK_s,      spawn,          {.v = pdfcmd } },
 	{ MODKEY|ControlMask,           XK_l,      spawn,          {.v = slock } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
@@ -157,7 +158,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_s,      show,           {0} },
 	//{ MODKEY|ShiftMask,             XK_s,      showall,        {0} },
 	//{ MODKEY,                       XK_h,      hide,           {0} },
 	TAGKEYS(                        XK_1,                      0)
