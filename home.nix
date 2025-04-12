@@ -32,6 +32,7 @@ in
   fonts.fontconfig.enable = true;
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
+    imagemagick
     usbutils
     unzip
     playerctl
@@ -64,6 +65,7 @@ in
     qimgv
     networkmanagerapplet
     nerd-fonts.jetbrains-mono
+    ghidra
     (pkgs.dwmblocks.overrideAttrs {
       src = ./dotfiles/dwmblocks;
     })
