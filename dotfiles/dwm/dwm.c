@@ -1265,6 +1265,15 @@ void
 incnmaster(const Arg *arg)
 {
 	selmon->nmaster = selmon->pertag->nmasters[selmon->pertag->curtag] = MAX(selmon->nmaster + arg->i, 0);
+
+    // Give DWM blocks access by writing to file
+    FILE *f = fopen("/tmp/dwm-nmaster", "w");
+    if (f) {
+        fprintf(f, "%d\n", selmon->nmaster);
+        fclose(f);
+    }
+    system("pkill -RTMIN+11 dwmblocks");
+
 	arrange(selmon);
 }
 
