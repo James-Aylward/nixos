@@ -290,6 +290,7 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
 static void spawnprograms();
+static void cyclelayout(const Arg *arg);
 
 /* variables */
 static Systray *systray = NULL;
@@ -343,6 +344,26 @@ struct Pertag {
 struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
 
 /* function implementations */
+void
+cyclelayout(const Arg *arg) {
+	int i = 0;
+	for (; i < LENGTH(layouts); i++)
+		if (layouts[i].arrange == selmon->lt[selmon->sellt]->arrange)
+			break;
+	if (arg->i > 0) {
+		if (i == LENGTH(layouts) - 1)
+			i = 0;
+		else
+			i++;
+	} else {
+		if (i == 0)
+			i = LENGTH(layouts) - 1;
+		else
+			i--;
+	}
+	setlayout(&((Arg) { .v = &layouts[i] }));
+}
+
 void
 applyrules(Client *c)
 {
@@ -2375,7 +2396,7 @@ updateclientlist(void)
 void updatecurrentdesktop(void){
 	long rawdata[] = { selmon->tagset[selmon->seltags] };
 	int i=0;
-	while(*rawdata >> i+1){
+	while(*rawdata >> (i+1)){
 		i++;
 	}
 	long data[] = { i };

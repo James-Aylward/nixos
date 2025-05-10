@@ -88,6 +88,7 @@ in
       "100:class_g = 'VirtualBox Machine'"
       "100:class_g = 'qimgv'"
       "100:class_g = 'vlc'"
+      "100:class_g = 'dmenu'"
     ];
 
     fadeExclude = [

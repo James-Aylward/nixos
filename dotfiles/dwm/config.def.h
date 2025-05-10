@@ -53,21 +53,22 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-	{ "[M]",      monocle },
+	{ "[M]",      monocle }, // really nice
 	{ "[@]",      spiral },
-	{ "[\\]",     dwindle },
-	{ "H[]",      deck },
+	{ "[\\]",     dwindle }, // same as spiral
+	{ "H[]",      deck }, // tabbed on right, master normal
 	{ "TTT",      bstack },
-	{ "===",      bstackhoriz },
+	{ "===",      bstackhoriz }, // bad
 	{ "HHH",      grid },
-	{ "###",      nrowgrid },
-	{ "---",      horizgrid },
-	{ ":::",      gaplessgrid },
-	{ "|M|",      centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
+	{ "###",      nrowgrid }, 
+	{ "---",      horizgrid }, // best grid
+	{ ":::",      gaplessgrid }, // pointless
+	{ "|M|",      centeredmaster }, // not that useful
+	{ ">M>",      centeredfloatingmaster }, // just no
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ NULL,       NULL },
 };
+
 
 /* key definitions */
 #define MODKEY Mod4Mask
@@ -118,8 +119,8 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 
     // Programs
-	{ 0,                    XF86XK_MonBrightnessUp,    spawn,          SHCMD("brightnessctl set 10\%+") },
-	{ 0,                    XF86XK_MonBrightnessDown,  spawn,          SHCMD("brightnessctl set 10\%-")},
+	{ 0,                    XF86XK_MonBrightnessUp,    spawn,          SHCMD("brightnessctl set 10%+") },
+	{ 0,                    XF86XK_MonBrightnessDown,  spawn,          SHCMD("brightnessctl set 10%-")},
 	{ 0,                    XF86XK_AudioRaiseVolume,   spawn,          SHCMD("pamixer -i 5 && pkill -RTMIN+10 dwmblocks") },
 	{ 0,                    XF86XK_AudioLowerVolume,   spawn,          SHCMD("pamixer -d 5 && pkill -RTMIN+10 dwmblocks") },
 	{ 0,                    XF86XK_AudioMute,          spawn,          SHCMD("pamixer -t   && pkill -RTMIN+10 dwmblocks") },
@@ -158,8 +159,10 @@ static const Key keys[] = {
 	{ MODKEY,               XK_Tab,                    view,           {0} },
 
     // Choosing layouts
-	{ MODKEY,               XK_t,                      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,               XK_m,                      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,               XK_t,                      setlayout,      {.v = &layouts[0]} }, // tile
+	{ MODKEY,               XK_m,                      setlayout,      {.v = &layouts[1]} }, // monocle
+	{ MODKEY,               XK_g,                      setlayout,      {.v = &layouts[9]} }, // horizgrid
+	{ MODKEY,               XK_x,                      setlayout,      {.v = &layouts[4]} }, // deck
 	{ MODKEY,               XK_space,                  setlayout,      {0} },
 	{ MODKEY,               XK_f,                      togglefullscr,  {0} },
 
@@ -185,7 +188,7 @@ static const Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
+	{ ClkLtSymbol,          0,              Button1,        cyclelayout,      {.i = +1} },
 	{ ClkWinTitle,          0,              Button1,        togglewin,      {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 
