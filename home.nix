@@ -26,7 +26,6 @@ in
 
   home.username = "jamesa";
   home.homeDirectory = "/home/jamesa";
-
   home.stateVersion = "24.05";
 
   fonts.fontconfig.enable = true;
@@ -36,10 +35,11 @@ in
     usbutils
     unzip
     playerctl
+    zsh-powerlevel10k
     dmenu-rs
     vial
     vlc
-    timewarrior
+    ripgrep
     nix-search-cli
     feh
     nitch
@@ -51,9 +51,7 @@ in
     pamixer
     networkmanager_dmenu
     obsidian
-    (pkgs.mathematica.override {
-        version = "14.1.0";
-    })
+    (pkgs.mathematica.override { version = "14.1.0"; })
     xterm
     libreoffice-fresh
     hunspell
@@ -66,9 +64,7 @@ in
     networkmanagerapplet
     nerd-fonts.jetbrains-mono
     ghidra
-    (pkgs.dwmblocks.overrideAttrs {
-      src = ./dotfiles/dwmblocks;
-    })
+    (pkgs.dwmblocks.overrideAttrs { src = ./dotfiles/dwmblocks; })
     (import ./programs/window-switcher.nix { inherit pkgs; })
     inputs.menucalc.packages.x86_64-linux.menucalc
   ];
@@ -85,12 +81,13 @@ in
       "100:class_g = 'firefox'"
       "100:class_g = 'sioyek'"
       "100:class_g = 'darktable'"
-      "100:class_g = 'Darktable'"
       "100:class_g = 'feh'"
       "100:class_g = 'obsidian'"
       "100:class_g = 'org.remmina.Remmina'"
       "100:class_g = 'code'"
-      "100:class_g = 'Celeste.bin.c86_64'"
+      "100:class_g = 'VirtualBox Machine'"
+      "100:class_g = 'qimgv'"
+      "100:class_g = 'vlc'"
     ];
 
     fadeExclude = [
@@ -151,7 +148,7 @@ in
     enable = true;
     hooks.postswitch = {
       "change-background" = ''
-        feh --bg-fill /etc/nixos/backgrounds/nix.png
+        feh --bg-fill ${./backgrounds/nix.png}
       '';
     };
   };
@@ -226,37 +223,34 @@ in
       tree-sitter
       texlab
       rocmPackages.llvm.clang
-      rocmPackages.llvm.clang-tools-extra
       pyright
       nixd
       nixpkgs-fmt
       nodejs-slim
-      svelte-language-server
-      typescript-language-server
-      vue-language-server
       lua-language-server
       ripgrep
       rust-analyzer
       rubber
-      java-language-server
     ];
   };
 
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
     shellAliases = {
       rb = "sudo nixos-rebuild switch --flake /etc/nixos/.\\?submodules=1#laptop";
       lg  = "lazygit";
       moss = "ssh -A s4743699@moss.labs.eait.uq.edu.au";
     };
-    initExtra = ''
-      xinput disable 10
+    initContent = ''
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      [[ ! -f ${./dotfiles/.p10k.zsh} ]] || source ${./dotfiles/.p10k.zsh}
       nitch
     '';
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "sudo" ];
+      plugins = [ "git" "sudo" "copyfile" ];
     };
   };
 
