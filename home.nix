@@ -98,6 +98,8 @@ in
 
   services.playerctld.enable = true;
 
+  services.copyq.enable = true;
+
   services.flameshot = {
     enable = true;
     settings = {
@@ -225,6 +227,7 @@ in
       texlab
       rocmPackages.llvm.clang
       pyright
+      haskellPackages.haskell-language-server
       nixd
       nixpkgs-fmt
       nodejs-slim
