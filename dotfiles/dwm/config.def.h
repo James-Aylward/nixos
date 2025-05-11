@@ -90,7 +90,7 @@ static const char *dmenuswitchcmd[] = {"switch", NULL};
 static const char *dmenucalccmd[] = {"=", "--dmenu=dmenu", "--", "-m", dmenumon, "--fn", dmenufont, "--nb", col_gray1, "--nf", col_gray3, "--sb", col_cyan, "--sf", col_gray4, NULL};
 
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *browsercmd[]  = { "firefox", NULL };
+static const char *browsercmd[]  = { "qb", NULL };
 static const char *screenshotcmd[]  = { "flameshot", "gui", NULL };
 static const char *pdfcmd[]  = { "sioyek", "--new-window", NULL };
 static const char *notescmd[] = { "obsidian", NULL };
