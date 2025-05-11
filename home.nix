@@ -89,6 +89,7 @@ in
       "100:class_g = 'qimgv'"
       "100:class_g = 'vlc'"
       "100:class_g = 'dmenu'"
+      "100:class_g = 'qutebrowser'"
     ];
 
     fadeExclude = [
@@ -189,6 +190,13 @@ in
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  programs.qutebrowser = {
+    enable = true;
+    extraConfig = ''
+        c.qt.highdpi = True;
+    '';
   };
 
   programs.firefox = {
