@@ -195,7 +195,12 @@ in
   programs.qutebrowser = {
     enable = true;
     extraConfig = ''
-        c.qt.highdpi = True;
+        c.qt.highdpi = True
+
+        c.colors.tabs.even.bg = #282828
+        c.colors.tabs.odd.bg = #282828
+        c.colors.tabs.selected.even.bg = #fc7e18;
+        c.colors.tabs.selected.odd.bg = #fc7e18;
     '';
   };
 
