@@ -28,10 +28,10 @@
     [ { device = "/dev/disk/by-uuid/d6618fac-45fa-4954-a40b-d7b9d4ed18cb"; }
     ];
 
-    environment.variables = rec {
-        QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-        QT_SCALE_FACTOR = "1.8";
-    };
+    #environment.variables = rec {
+    #    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    #    QT_SCALE_FACTOR = "1.8";
+    #};
 
   services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = {
